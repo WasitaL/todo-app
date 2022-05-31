@@ -13,13 +13,14 @@ const TodoItem = (props: TodoItemProps) => {
     const [isOpenOption, setIsOpenOption] = useState<boolean>(false);
     const [editValue, setEditValue] = useState<string>('');
 
-    const selectAction = (key: string, id: string) => {
+    const selectAction = (key: string) => {
         switch (key) {
             case 'edit':
+                setEditValue(data.title);
                 setIsEditMode(true);
                 break;
             case 'delete':
-                onDeleteTodo(id);
+                onDeleteTodo(data.id);
                 break;
             default:
                 break;
@@ -52,6 +53,7 @@ const TodoItem = (props: TodoItemProps) => {
             setIsOpenOption(false);
         }
     };
+
     return (
         <div className='todo-item'>
             {!isEditMode ? (
@@ -98,11 +100,9 @@ const TodoItem = (props: TodoItemProps) => {
                                 display: `${isOpenOption ? 'block' : 'none'}`,
                             }}
                         >
-                            <li onClick={(e) => selectAction('edit', data.id)}>
-                                Edit
-                            </li>
+                            <li onClick={(e) => selectAction('edit')}>Edit</li>
                             <li
-                                onClick={(e) => selectAction('delete', data.id)}
+                                onClick={(e) => selectAction('delete')}
                                 style={{ color: '#E07C7C' }}
                             >
                                 Delete
