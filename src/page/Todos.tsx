@@ -80,27 +80,15 @@ const Todos = (props: TodosProps) => {
         initialLoad();
     };
 
-    window.onclick = (event) => {
-        //@ts-ignore
-        if (!event.target.matches('li') && !event.target.matches('#dropdown')) {
-            setIsOpenDropdown(false);
-        }
-    };
-
     return (
         <div className='container'>
             <Progress />
             <div className='title-section'>
                 <h2>Tasks</h2>
                 <div className='dropdown'>
-                    <div
-                        className='select'
-                        id='dropdown'
-                        onClick={(e) => onClickDropdown()}
-                    >
+                    <div className='select' onClick={(e) => onClickDropdown()}>
                         <span className='selected'>{filterSelected}</span>
                         <img
-                            id='dropdown'
                             alt='icon_select'
                             src='icon_select.svg'
                             style={{
@@ -113,14 +101,12 @@ const Todos = (props: TodosProps) => {
                     <ul
                         className='menu'
                         style={{
-                            visibility: `${
-                                isOpenDropdown ? 'visible' : 'hidden'
-                            }`,
+                            display: `${isOpenDropdown ? 'block' : 'none'}`,
                         }}
                     >
                         <li onClick={(e) => onSearchTodo('All')}>All</li>
                         <li onClick={(e) => onSearchTodo('Done')}>Done</li>
-                        <li onClick={(e) => onSearchTodo('Undone')}>undone</li>
+                        <li onClick={(e) => onSearchTodo('Undone')}>Undone</li>
                     </ul>
                 </div>
             </div>
