@@ -8,10 +8,16 @@ const Progress = () => {
 
     const calCompleteTodoList = () => {
         let total = todosStore.todoList.length;
+
         setCompleteTodo(
             todosStore.todoList.filter((item) => item.completed === true).length
         );
-        setPercent(`${Math.round((completeTodo / total) * 100)}%`);
+
+        let value = Math.round((completeTodo / total) * 100)
+            ? `${Math.round((completeTodo / total) * 100)}%`
+            : '0%';
+
+        setPercent(value);
 
         const progress = document.querySelector(
             '.progress-fill'
